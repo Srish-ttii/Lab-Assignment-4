@@ -1,0 +1,89 @@
+/*************************************************
+ * JavaScript Console Quiz Game
+ * Developer: Parikshit Chauhan
+ * B.Tech CSE (AI/ML)
+ *************************************************/
+
+// Quiz Questions Array
+const quizQuestions = [
+  {
+    question: "What does HTML stand for?",
+    answer: "hypertext markup language"
+  },
+  {
+    question: "Which keyword is used to declare a block-scoped variable in JavaScript?",
+    answer: "let"
+  },
+  {
+    question: "What method converts a string to lowercase in JavaScript?",
+    answer: "tolowercase"
+  },
+  {
+    question: "Which symbol is used for single-line comments in JavaScript?",
+    answer: "//"
+  },
+  {
+    question: "What does CSS stand for?",
+    answer: "cascading style sheets"
+  }
+];
+
+// Function to run the quiz
+function runQuiz() {
+  let score = 0;
+
+  alert("🚀 Welcome to the JavaScript Console Quiz!\nTest your core JS knowledge.\n\nClick OK to begin.");
+
+  for (let i = 0; i < quizQuestions.length; i++) {
+    let userAnswer = prompt(
+      "Question " + (i + 1) + ":\n" + quizQuestions[i].question
+    );
+
+    // Handle quiz cancel
+    if (userAnswer === null) {
+      alert("❗ Quiz cancelled by user.");
+      return;
+    }
+
+    // Normalize input
+    userAnswer = userAnswer.toLowerCase().trim();
+
+    // Check answer
+    if (userAnswer === quizQuestions[i].answer) {
+      score++;
+      alert("✅ Correct! Great job!");
+    } else {
+      alert(
+        "❌ Incorrect!\nCorrect Answer: " + quizQuestions[i].answer
+      );
+    }
+  }
+
+  // Performance Message
+  let performanceMessage = "";
+
+  if (score === quizQuestions.length) {
+    performanceMessage = "🌟 Outstanding! Perfect Score!";
+  } else if (score >= 3) {
+    performanceMessage = "👍 Good job! Keep improving!";
+  } else {
+    performanceMessage = "💡 Needs practice. Try again!";
+  }
+
+  alert(
+    "🎉 Quiz Completed!\n\n" +
+    "Your Final Score: " + score + " / " + quizQuestions.length +
+    "\n" + performanceMessage
+  );
+
+  // Restart Option
+  let restart = confirm("🔄 Do you want to play again?");
+  if (restart) {
+    runQuiz();
+  } else {
+    alert("Thank you for playing! 👨‍💻");
+  }
+}
+
+// Start Quiz
+runQuiz();
